@@ -172,4 +172,3 @@ void SerialSend()
   Serial.print(getAngle());   
   Serial.print(" ");
 }
-
