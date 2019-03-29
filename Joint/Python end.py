@@ -1,12 +1,11 @@
 import serial
 import struct
-arduino = serial.Serial('/dev/tty.usbserial', 9600)
+import time as time
 
-def binary(num):
-    return (bin(ord(c)).replace('0b', '').rjust(8, '0') for c in struct.pack('!f', num))
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 
 while True:
-    value = float(raw_input("Enter torque : "))
-    byte = bin(value)
-    
-    
+    value = float(raw_input("Enter value : "))
+    arduino.write(struct.pack('f',value))
+    print struct.unpack("f", struct.pack('f',value))[0]
+    time.sleep(1)
